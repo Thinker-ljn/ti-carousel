@@ -30,7 +30,7 @@ Carousel.prototype = {
 
     this.setButton()
 
-    // this.startPlay()
+    this.startPlay()
     this.rendered = true
   },
 

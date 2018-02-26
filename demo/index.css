@@ -63,9 +63,8 @@ li
   list-style: none;
   transition: all 1s ease-in-out;
   position: absolute;
-  left: 0%;
+  left: 5%;
   bottom: 0%;
-  opacity: 0;
   height: 90%;
 }
 
@@ -89,14 +88,12 @@ li img
   left: -10%;
   z-index: 1;
   height: 90%;
-  opacity: .8;
 }
 
 .ti-carousel-li0
 {
   left: 0;
   z-index: 2;
-  opacity: 1;
   height: 100%;
 }
 
@@ -105,5 +102,4 @@ li img
   left: 20%;
   z-index: 1;
   height: 90%;
-  opacity: .8;
 }

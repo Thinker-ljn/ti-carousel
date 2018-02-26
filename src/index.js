@@ -9,7 +9,7 @@ Carousel.prototype = {
     this.path = options.path || './images/'
     this.items = options.items
     this.mode = options.mode || 'fade'
-    this.playTime = 2000
+    this.interval = options.interval || 2500
     this.rendered = false
 
     this.classPrefix = options.classPrefix || 'ti-carousel-'
@@ -29,6 +29,7 @@ Carousel.prototype = {
     this.target.appendChild(this.ul)
 
     this.setButton()
+
     // this.startPlay()
     this.rendered = true
   },
@@ -42,6 +43,7 @@ Carousel.prototype = {
   setBtn (type) {
     let btn = document.createElement('div')
     btn.className = this.classes[type]
+    btn.innerHTML = type
     btn.addEventListener('click', () => {this[type]()})
     this.target.appendChild(btn)
   },
@@ -66,9 +68,11 @@ Carousel.prototype = {
 
   createChildren (ul) {
     let originLi = []
-    this.items.map((item, i) => {
+    this.items.map((item, i, array) => {
       let li = document.createElement('li')
       li.classList.add(this.classes['li'] + i)
+
+      if (i === array.length - 1) li.classList.add(this.classes['li'] + '-last')
 
       let img = document.createElement('img')
       img.setAttribute('src', this.path + item)
@@ -113,15 +117,18 @@ Carousel.prototype = {
     }
 
     setTimeout(() => {
-      Array.prototype.forEach.call(this.ul.children, (el, index) => {
+      Array.prototype.forEach.call(this.ul.children, (el, index, array) => {
         el.classList.remove(classes[index])
         el.classList.add(this.classes['li'] + index)
+
+        el.classList.remove(this.classes['li'] + '-last')
+        if (index === array.length - 1) el.classList.add(this.classes['li'] + '-last')
       })
     }, 0)
   },
 
   startPlay () {
-    window.setInterval(() => {this.next()}, this.playTime)
+    window.setInterval(() => {this.next()}, this.interval)
   },
 
   next () {

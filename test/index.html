@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>carousel</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="../src/index.css" rel="stylesheet">
+</head>
+<body>
+    <div class="bg">
+
+    </div>
+</body>
+<script src="../src/index.js"></script>
+<script>
+  let carousel = new Carousel('.bg', {
+    items: ['01.jpg', '02.jpg', '03.jpg', '04.jpg', '05.jpg', '06.jpg', '07.jpg', '08.jpg', '09.jpg', '10.jpg'],
+    classes: ['first', 'last', 2]
+  })
+
+  carousel.render()
+</script>
+</html>

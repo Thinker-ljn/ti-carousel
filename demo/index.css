@@ -9,7 +9,7 @@
 .ti-carousel-next,
 .ti-carousel-prev
 {
-    content: '';
+    color: transparent;
     height: 40px;
     width: 40px;
     background-color: #fff;
@@ -19,9 +19,28 @@
     opacity: .8;
     cursor: pointer;
 }
+.ti-carousel-next:before,
+.ti-carousel-prev:before
+{
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 10px;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+  border-left-width: 0;
+  border-bottom-width: 0;
+  transform: rotate(-135deg);
+}
 .ti-carousel-next
 {
     right: 0;
+}
+
+.ti-carousel-next:before{
+  transform: rotate(45deg);
+  left: 5px;
 }
 
 .ti-carousel-pointers
@@ -61,7 +80,7 @@ ul
 li
 {
   list-style: none;
-  transition: all 1s ease-in-out;
+  transition: all .7s ease-in-out;
   position: absolute;
   left: 5%;
   bottom: 0%;
@@ -74,7 +93,7 @@ li img
   height: 100%;
 }
 
-.ti-carousel-li9
+.ti-carousel-li-last
 {
   left: -10%;
   z-index: 1;

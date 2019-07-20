@@ -57,7 +57,7 @@ Carousel.prototype = {
       pointer.innerHTML = index
       pointer.classList.add(this.classes['pointer'])
 
-      pointer.addEventListener('click', this.pointer.bind(this))
+      pointer.addEventListener('click', this.pointTo.bind(this))
       pointers.appendChild(pointer)
     })
 
@@ -128,22 +128,31 @@ Carousel.prototype = {
   },
 
   startPlay () {
-    window.setInterval(() => {this.next()}, this.interval)
+    window.setInterval(() => {
+      if (!this.ignoreNext) {
+        this.next()
+      } else {
+        this.ignoreNext = false
+      }
+    }, this.interval)
   },
 
   next () {
+    this.ignoreNext = true
     this.setAnimationClasses('next')
     this.ul.appendChild(this.ul.children[0])
     this.setIndex(this.index + 1)
   },
 
   prev () {
+    this.ignoreNext = true
     this.setAnimationClasses('prev')
     this.ul.insertBefore(this.ul.children[this.ul.children.length - 1], this.ul.children[0])
     this.setIndex(this.index - 1)
   },
 
-  pointer (e) {
+  pointTo (e) {
+    this.ignoreNext = true
     let index = Number(e.target.innerHTML)
     let realIndex = (index - this.index + this.ul.children.length) % this.ul.children.length
     this.setAnimationClasses(realIndex)
